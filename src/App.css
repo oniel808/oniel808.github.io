@@ -13,6 +13,16 @@
   }
 }
 
+body {
+  animation: gradient 15s ease-in-out;
+  background: linear-gradient(#000426 42%, #00010a 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: 3s;
+  color: #DEDEDE;
+  overflow: hidden;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -32,6 +42,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

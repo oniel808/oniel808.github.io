@@ -1,36 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import { Grid, Tabs, Tab} from '@material-ui/core'
 import NavBar from './AppBar';
 import Home from './homePage';
+import withWidth from '@material-ui/core/withWidth';
 
-
-
-
-class TabPanel extends React.Component{
-	constructor(props){
+class App extends React.Component {
+	constructor(props) {
 		super(props)
-		this.state = {id:props}
+		this.state = {
+			viewSize: this.props.width
+		}
 		console.log(props)
 	}
-	render(){
-		return(
+	componentWillUpdate(prevProps, prevState, snapshot) {
+		if (prevProps.width != prevState.viewSize)
+			this.setState({ viewSize: prevProps.width });
+	}
+	render() {
+		console.log('current | state', this.state)
+		return (
 			<React.Fragment>
-				<div id={this.props.id}>
-				</div>
+				<NavBar viewSize={this.state.viewSize} />
+				<Home viewSize={this.state.viewSize} />
 			</React.Fragment>
 		)
 	}
 }
-class App extends React.Component {
-	render(){
-		return(
-			<React.Fragment>
-				<NavBar color="transparent"/>
-				<Home/>
-			</React.Fragment>
-		)
-	}  
-}
-export default App;
+export default withWidth()(App);
